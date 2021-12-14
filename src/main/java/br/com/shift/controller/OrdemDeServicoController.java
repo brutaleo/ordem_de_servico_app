@@ -1,5 +1,7 @@
 package br.com.shift.controller;
 
+import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
+import br.com.shift.dto.AdicionarOrdemDeServicoDTO;
 import br.com.shift.dto.OrdemDeServicoDTO;
 import br.com.shift.dto.OrdemDeServicoMapper;
 import br.com.shift.modelo.OrdemDeServico;
@@ -32,37 +34,38 @@ public class OrdemDeServicoController {
 
     @GET
     public List<OrdemDeServicoDTO> buscarTodasAsOrdensDeServico() {
-        Stream<OrdemDeServico> ordemDeServico = OrdemDeServico.streamAll();
-        return ordemDeServico
-                .map(o -> ordemDeServicoMapper.toOrdemDeServicoDTO(o))
-                .collect(Collectors.toList());
+        Stream<OrdemDeServico> ordemDeServicos = OrdemDeServico.streamAll();
+        return ordemDeServicos
+                .map(o -> ordemDeServicoMapper.toOrdemDeServicoDTO(o)).collect(Collectors.toList());
     }
     
     @POST
     @Transactional
-    public void adicionarNovaOrdemDeServico(OrdemDeServicoDTO dto) {
+    public Response adicionarNovaOrdemDeServico(AdicionarOrdemDeServicoDTO dto) {
         OrdemDeServico ordemDeServico = ordemDeServicoMapper.toOrdemDeServico(dto);
         ordemDeServico.persist();
-        Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Transactional
-    public void alterarOrdemDeServico(@PathParam("id") Long id, OrdemDeServicoDTO dto) {
+    public void atualizarOrdemDeServico(@PathParam("id") Long id, AtualizarOrdemDeServicoDTO dto) {
         Optional<OrdemDeServico> ordemDeServicoOpitional =
                 OrdemDeServico.findByIdOptional(id);
         if (ordemDeServicoOpitional.isEmpty()) {
             throw new NotFoundException();
         }
         OrdemDeServico ordemDeServico = ordemDeServicoOpitional.get();
+        ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
+        ordemDeServico.persist();
 
     }
 
     @DELETE
     @Path("{id}")
     @Transactional
-    public void deletarOrdemDeServico(@PathParam("id") Long id, OrdemDeServicoDTO dto) {
+    public void deletarOrdemDeServico(@PathParam("id") Long id, AdicionarOrdemDeServicoDTO dto) {
         Optional<OrdemDeServico> ordemDeServicoOpitional =
                 OrdemDeServico.findByIdOptional(id);
         ordemDeServicoOpitional.ifPresentOrElse(OrdemDeServico::delete,

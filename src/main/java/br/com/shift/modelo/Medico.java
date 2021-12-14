@@ -9,8 +9,8 @@ import javax.persistence.Table;
 @Table(name = "medico")
 public class Medico extends PanacheEntity {
 
-    private String nome;
+    public String nome;
 
-    private String especialidade;
+    public String especialidade;
 
 }

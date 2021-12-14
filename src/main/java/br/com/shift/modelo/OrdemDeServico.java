@@ -13,23 +13,23 @@ import java.time.LocalDate;
 public class OrdemDeServico extends PanacheEntity {
 
     @CreationTimestamp
-    private LocalDate dataCadastro;
+    public LocalDate dataCadastro;
 
     @UpdateTimestamp
-    private LocalDate dataAtualizacao;
+    public LocalDate dataAtualizacao;
 
-    private String convenio;
+    public String convenio;
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    public Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "posto_coleta_id")
-    private PostoColeta postoColeta;
+    public PostoColeta postoColeta;
 
     @ManyToOne
     @JoinColumn(name = "medico_id")
-    private Medico medico;
+    public Medico medico;
 
 }

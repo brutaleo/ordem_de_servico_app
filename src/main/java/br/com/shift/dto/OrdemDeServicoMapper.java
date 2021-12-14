@@ -2,11 +2,13 @@ package br.com.shift.dto;
 
 import br.com.shift.modelo.OrdemDeServico;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "cdi")
 public interface OrdemDeServicoMapper {
-    OrdemDeServico toOrdemDeServico(OrdemDeServicoDTO dto);
+
     OrdemDeServicoDTO toOrdemDeServicoDTO(OrdemDeServico o);
+    OrdemDeServico toOrdemDeServico(AdicionarOrdemDeServicoDTO dto);
+    void toOrdemDeServico(AtualizarOrdemDeServicoDTO dto, @MappingTarget OrdemDeServico ordemDeServico);
 
 }

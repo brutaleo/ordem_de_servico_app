@@ -10,13 +10,13 @@ import java.time.LocalDate;
 @Table(name = "paciente")
 public class Paciente extends PanacheEntity {
 
-    private String nome;
+   public String nome;
 
-    private LocalDate dataNascimento;
+   public LocalDate dataNascimento;
 
-    private String sexo;
+   public String sexo;
 
-    private String endereco;
+   public String endereco;
 
 
 }

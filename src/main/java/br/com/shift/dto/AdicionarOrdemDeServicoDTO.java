@@ -1,6 +1,6 @@
 package br.com.shift.dto;
 
-public class OrdemDeServicoDTO {
+public class AdicionarOrdemDeServicoDTO {
 
     public String convenio;
 

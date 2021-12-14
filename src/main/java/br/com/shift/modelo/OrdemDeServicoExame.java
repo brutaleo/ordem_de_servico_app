@@ -18,8 +18,8 @@ public class OrdemDeServicoExame extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(name = "exame_id")
-    private Exame exame;
+    public Exame exame;
 
-    private BigDecimal preco;
+    public BigDecimal preco;
 
 }

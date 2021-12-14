@@ -14,9 +14,9 @@ import java.math.BigDecimal;
 @Table(name = "exame")
 public class Exame extends PanacheEntity {
 
-    private String descricao;
+    public String descricao;
 
-    private BigDecimal preco;
+    public BigDecimal preco;
 
 
 }

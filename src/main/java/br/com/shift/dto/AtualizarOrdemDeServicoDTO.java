@@ -1,2 +1,7 @@
-package br.com.shift.dto;public class AtualizarOrdemDeServicoDTO {
+package br.com.shift.dto;
+
+public class AtualizarOrdemDeServicoDTO {
+
+    public String convenio;
+
 }

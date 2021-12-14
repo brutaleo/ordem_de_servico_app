@@ -9,8 +9,8 @@ import javax.persistence.Table;
 @Table(name = "posto_coleta")
 public class PostoColeta extends PanacheEntity {
 
-    private String descricao;
+    public String descricao;
 
-    private String endereco;
+    public String endereco;
 
 }
