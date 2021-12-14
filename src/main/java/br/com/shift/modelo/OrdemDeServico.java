@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class OrdemDeServico extends PanacheEntity {
 
     @CreationTimestamp
-    private LocalDate dataEntrada;
+    private LocalDate dataCadastro;
 
     @UpdateTimestamp
     private LocalDate dataAtualizacao;
