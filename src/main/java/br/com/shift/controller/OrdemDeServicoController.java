@@ -1,16 +1,13 @@
 package br.com.shift.controller;
 
-import br.com.shift.dto.AdicionarExameDTO;
-import br.com.shift.dto.AdicionarExameMapper;
 import br.com.shift.dto.AdicionarOrdemDeServicoDTO;
 import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
 import br.com.shift.dto.OrdemDeServicoDTO;
-import br.com.shift.dto.OrdemDeServicoMapper;
+import br.com.shift.dto.Mappers.OrdemDeServicoMapper;
 import br.com.shift.model.Exame;
 import br.com.shift.model.OrdemDeServico;
 import br.com.shift.model.OrdemDeServicoExame;
 import br.com.shift.repository.OrdemDeServicoExameRepository;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -56,7 +53,7 @@ public class OrdemDeServicoController {
     }
 
     @POST
-    @Path("adiciona/{ordem_id}/{exame_id}")
+    @Path("{ordem_id}/{exame_id}")
     @Transactional
     public Response adicionaExameNaOrdemDeServico(@PathParam("ordem_id") Long ordem_id, @PathParam("exame_id") Long exame_id) {
 

@@ -1,5 +1,6 @@
-package br.com.shift.dto;
+package br.com.shift.dto.Mappers;
 
+import br.com.shift.dto.AdicionarExameDTO;
 import br.com.shift.model.OrdemDeServico;
 import br.com.shift.model.OrdemDeServicoExame;
 import org.mapstruct.Mapper;

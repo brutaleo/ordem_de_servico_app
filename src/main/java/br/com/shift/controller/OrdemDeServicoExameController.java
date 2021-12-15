@@ -1,7 +1,7 @@
 package br.com.shift.controller;
 
 import br.com.shift.dto.ExameDTO;
-import br.com.shift.dto.ExameMapper;
+import br.com.shift.dto.Mappers.ExameMapper;
 import br.com.shift.model.Exame;
 import br.com.shift.model.OrdemDeServicoExame;
 
@@ -29,11 +29,12 @@ public class OrdemDeServicoExameController {
     @GET
     @Path("{ordem_de_servico_id}")
     public List<ExameDTO> buscarExamesPorOrdemdeServico(@PathParam("ordem_de_servico_id") Long ordem_id) {
-        Optional<OrdemDeServicoExame> OrdemOptional = OrdemDeServicoExame.findByIdOptional(ordem_id);
-        if (OrdemOptional.isEmpty()) {
+        Optional<OrdemDeServicoExame> ordemOptional = OrdemDeServicoExame.findByIdOptional(ordem_id);
+        if (ordemOptional.isEmpty()) {
             throw new NotFoundException();
         }
-        Stream<Exame> exames = Exame.stream("ordemDeServicoExame", OrdemOptional.get());
+
+        Stream<Exame> exames = Exame.stream("id", ordemOptional.get().exame.id);
         return exames.map(e -> exameMapper.toExameDTO(e)).collect(Collectors.toList());
     }
 }

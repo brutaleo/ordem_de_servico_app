@@ -6,14 +6,11 @@ public class OrdemDeServicoDTO {
 
     public String protocolo;
 
-    public PacienteDTO pacienteDTO;
+    public PacienteDTO paciente;
 
-    public PostoColetaDTO postoColetaDTO;
+    public PostoColetaDTO postoColeta;
 
-    public MedicoDTO medicoDTO;
+    public MedicoDTO medico;
 
     public String dataCadastro;
-
-
-
 }

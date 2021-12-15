@@ -1,5 +1,6 @@
-package br.com.shift.dto;
+package br.com.shift.dto.Mappers;
 
+import br.com.shift.dto.ExameDTO;
 import br.com.shift.model.Exame;
 import org.mapstruct.Mapper;
 
