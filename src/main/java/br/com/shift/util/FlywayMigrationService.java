@@ -1,4 +1,4 @@
-package com.github.brutaleo.ifood.cadastro.util;
+package br.com.shift.util;
 
 import io.quarkus.runtime.StartupEvent;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -9,7 +9,7 @@ import javax.enterprise.event.Observes;
 
 @ApplicationScoped
 public class FlywayMigrationService {
-    @ConfigProperty(name = "%test.quarkus.datasource.jdbc.url")
+    @ConfigProperty(name = "quarkus.datasource.jdbc.url")
     String datasourceUrl;
     @ConfigProperty(name = "quarkus.datasource.username")
     String datasourceUsername;
