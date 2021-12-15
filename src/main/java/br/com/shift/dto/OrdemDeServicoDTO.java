@@ -2,15 +2,17 @@ package br.com.shift.dto;
 
 public class OrdemDeServicoDTO {
 
-    public Long id;
-
     public String convenio;
+
+    public String protocolo;
 
     public PacienteDTO pacienteDTO;
 
     public PostoColetaDTO postoColetaDTO;
 
     public MedicoDTO medicoDTO;
+
+    public String dataCadastro;
 
 
 

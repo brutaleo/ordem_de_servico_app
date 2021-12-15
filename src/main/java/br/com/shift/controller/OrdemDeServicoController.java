@@ -1,10 +1,16 @@
 package br.com.shift.controller;
 
-import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
+import br.com.shift.dto.AdicionarExameDTO;
+import br.com.shift.dto.AdicionarExameMapper;
 import br.com.shift.dto.AdicionarOrdemDeServicoDTO;
+import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
 import br.com.shift.dto.OrdemDeServicoDTO;
 import br.com.shift.dto.OrdemDeServicoMapper;
-import br.com.shift.modelo.OrdemDeServico;
+import br.com.shift.model.Exame;
+import br.com.shift.model.OrdemDeServico;
+import br.com.shift.model.OrdemDeServicoExame;
+import br.com.shift.repository.OrdemDeServicoExameRepository;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -24,13 +30,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Path("Ordens")
+@Path("ordens")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrdemDeServicoController {
 
     @Inject
     OrdemDeServicoMapper ordemDeServicoMapper;
+    @Inject
+    OrdemDeServicoExameRepository ordemDeServicoExameRepository;
 
     @GET
     public List<OrdemDeServicoDTO> buscarTodasAsOrdensDeServico() {
@@ -38,12 +46,35 @@ public class OrdemDeServicoController {
         return ordemDeServicos
                 .map(o -> ordemDeServicoMapper.toOrdemDeServicoDTO(o)).collect(Collectors.toList());
     }
-    
+
     @POST
     @Transactional
     public Response adicionarNovaOrdemDeServico(AdicionarOrdemDeServicoDTO dto) {
         OrdemDeServico ordemDeServico = ordemDeServicoMapper.toOrdemDeServico(dto);
         ordemDeServico.persist();
+        return Response.status(Response.Status.CREATED).build();
+    }
+
+    @POST
+    @Path("adiciona/{ordem_id}/{exame_id}")
+    @Transactional
+    public Response adicionaExameNaOrdemDeServico(@PathParam("ordem_id") Long ordem_id, @PathParam("exame_id") Long exame_id) {
+
+        Optional<OrdemDeServico> ordemOptional = OrdemDeServico.findByIdOptional(ordem_id);
+        if (ordemOptional.isEmpty()) {
+            throw new NotFoundException();
+        }
+
+        Optional<Exame> exameOptional = Exame.findByIdOptional(exame_id);
+        if (exameOptional.isEmpty()) {
+            throw new NotFoundException();
+        }
+
+        OrdemDeServicoExame ordemDeServicoExame = new OrdemDeServicoExame();
+        ordemDeServicoExame.ordemDeServico = ordemOptional.get();
+        ordemDeServicoExame.exame = exameOptional.get();
+        ordemDeServicoExameRepository.persist(ordemDeServicoExame);
+
         return Response.status(Response.Status.CREATED).build();
     }
 
@@ -59,7 +90,6 @@ public class OrdemDeServicoController {
         OrdemDeServico ordemDeServico = ordemDeServicoOpitional.get();
         ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
         ordemDeServico.persist();
-
     }
 
     @DELETE
@@ -72,7 +102,7 @@ public class OrdemDeServicoController {
                 () -> {
                     throw new NotFoundException();
                 });
-        }
     }
+}
 
 
