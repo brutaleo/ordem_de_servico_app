@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/c2b9139a/ordem_de_servico_app/ordem_de_servico_app/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="112.0" y="191.0">Exame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Exame.java</node>
+    <node x="-347.0" y="-31.0">Medico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Medico.java</node>
+    <node x="-863.0" y="116.0">PostoColeta#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/PostoColeta.java</node>
+    <node x="-170.99999999999997" y="164.0">OrdemDeServicoExame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServicoExame.java</node>
+    <node x="-485.99999999999994" y="158.5">OrdemDeServico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServico.java</node>
+    <node x="-804.0" y="300.0">Paciente#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Paciente.java</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="OrdemDeServicoExame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServicoExame.java" target="OrdemDeServico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServico.java" relationship="RELATION">
+      <point x="0.4999999999999716" y="-26.0" />
+      <point x="-74.0" y="317.25" />
+      <point x="-394.99999999999994" y="317.25" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="OrdemDeServico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServico.java" target="Paciente#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Paciente.java" relationship="RELATION">
+      <point x="-91.0" y="0.0" />
+      <point x="-711.5" y="219.5" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="OrdemDeServico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServico.java" target="PostoColeta#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/PostoColeta.java" relationship="RELATION">
+      <point x="-9.000000000000057" y="-61.0" />
+      <point x="-404.0" y="101.75" />
+      <point x="-800.0" y="101.75" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="OrdemDeServico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServico.java" target="Medico#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Medico.java" relationship="RELATION">
+      <point x="91.0" y="0.0" />
+      <point x="-273.5" y="219.5" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="OrdemDeServicoExame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServicoExame.java" target="Exame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/Exame.java" relationship="RELATION">
+      <point x="0.4999999999999716" y="-30.0" />
+      <point x="-74.0" y="317.25" />
+      <point x="179.0" y="317.25" />
+      <point x="0.0" y="39.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="168.0" y="191.0" />
+  <SelectedNodes>
+    <node>OrdemDeServicoExame#file://D:/JAVA/Shift/ordem_de_servico_app/src/main/java/br/com/shift/model/OrdemDeServicoExame.java</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+  </Categories>
+</Diagram>
+
