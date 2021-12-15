@@ -70,6 +70,7 @@ public class OrdemDeServicoController {
         OrdemDeServicoExame ordemDeServicoExame = new OrdemDeServicoExame();
         ordemDeServicoExame.ordemDeServico = ordemOptional.get();
         ordemDeServicoExame.exame = exameOptional.get();
+
         ordemDeServicoExameRepository.persist(ordemDeServicoExame);
 
         return Response.status(Response.Status.CREATED).build();

@@ -4,7 +4,6 @@ import br.com.shift.dto.AdicionarExameDTO;
 import br.com.shift.model.OrdemDeServico;
 import br.com.shift.model.OrdemDeServicoExame;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "cdi")
 public interface AdicionarExameMapper {
