@@ -17,4 +17,5 @@ public interface OrdemDeServicoMapper {
     OrdemDeServico toOrdemDeServico(AdicionarOrdemDeServicoDTO dto);
     void toOrdemDeServico(AtualizarOrdemDeServicoDTO dto, @MappingTarget OrdemDeServico ordemDeServico);
 
+
 }

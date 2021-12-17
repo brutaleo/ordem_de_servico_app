@@ -5,7 +5,6 @@ import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
 import br.com.shift.dto.Mappers.OrdemDeServicoMapper;
 import br.com.shift.dto.OrdemDeServicoDTO;
 import br.com.shift.model.OrdemDeServico;
-import br.com.shift.repository.OrdemDeServicoExameRepository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -22,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -62,19 +62,32 @@ public class OrdemDeServicoController {
         ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
         ordemDeServico.persist();
     }
+    public String gerarNumeroDeprotocolo() {
+
+        Random ran = new Random();
+        int top = 9;
+        char data = ' ';
+        StringBuilder dat = new StringBuilder();
+
+        for (int i=0; i<=top; i++) {
+            data = (char)(ran.nextInt(25)+97);
+            dat.insert(0, data);
+        }
+
+        return dat.toString().toUpperCase();
+    }
 
     @PUT
     @Path("protocolo/{id}")
     @Transactional
-    public void gerarProtocoloDaOrdemDeServico(@PathParam("id") Long id, AtualizarOrdemDeServicoDTO dto) {
+    public void gerarProtocoloDaOrdemDeServico(@PathParam("id") Long id) {
         Optional<OrdemDeServico> ordemDeServicoOpitional =
                 OrdemDeServico.findByIdOptional(id);
         if (ordemDeServicoOpitional.isEmpty()) {
             throw new NotFoundException();
         }
         OrdemDeServico ordemDeServico = ordemDeServicoOpitional.get();
-        ordemDeServico.protocolo = dto.gerarNumeroDeprotocolo();
-        ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
+        ordemDeServico.protocolo = gerarNumeroDeprotocolo();
         ordemDeServico.persist();
     }
 

@@ -32,7 +32,6 @@ public class OrdemDeServicoExameController {
     @Inject
     OrdemDeServicoExameRepository ordemDeServicoExameRepository;
 
-
     @GET
     @Path("{ordem_de_servico_id}")
     public List<ExameDTO> listarExames(@PathParam("ordem_de_servico_id") Long ordem_id) {
