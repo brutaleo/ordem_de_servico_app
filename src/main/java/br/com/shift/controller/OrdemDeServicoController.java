@@ -94,7 +94,7 @@ public class OrdemDeServicoController {
     @DELETE
     @Path("{id}")
     @Transactional
-    public void deletarOrdemDeServico(@PathParam("id") Long id, AdicionarOrdemDeServicoDTO dto) {
+    public void deletarOrdemDeServico(@PathParam("id") Long id) {
         Optional<OrdemDeServico> ordemDeServicoOpitional =
                 OrdemDeServico.findByIdOptional(id);
         ordemDeServicoOpitional.ifPresentOrElse(OrdemDeServico::delete,
