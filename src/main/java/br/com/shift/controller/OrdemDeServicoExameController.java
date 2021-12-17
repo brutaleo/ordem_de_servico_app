@@ -6,7 +6,6 @@ import br.com.shift.model.Exame;
 import br.com.shift.model.OrdemDeServico;
 import br.com.shift.model.OrdemDeServicoExame;
 import br.com.shift.repository.OrdemDeServicoExameRepository;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 import javax.inject.Inject;
