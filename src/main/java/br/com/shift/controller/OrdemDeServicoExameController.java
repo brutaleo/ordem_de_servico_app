@@ -6,10 +6,13 @@ import br.com.shift.model.Exame;
 import br.com.shift.model.OrdemDeServico;
 import br.com.shift.model.OrdemDeServicoExame;
 import br.com.shift.repository.OrdemDeServicoExameRepository;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -70,5 +73,20 @@ public class OrdemDeServicoExameController {
         ordemDeServicoExameRepository.persist(ordemDeServicoExame);
 
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    @DELETE
+    @Path("{ordem_id}/{exame_id}")
+    @Transactional
+    public void deletarOrdemDeServico(@PathParam("ordem_id") Long ordem_id, @PathParam("exame_id") Long exame_id) {
+
+        PanacheQuery<OrdemDeServicoExame> ordemExameQuery = ordemDeServicoExameRepository
+                .find("#OrdemDeServicoExame.getByOrdemExame", ordem_id, exame_id);
+
+        OrdemDeServicoExame ordemDeServicoExame = ordemExameQuery.firstResult();
+        if (ordemDeServicoExame != null) {
+            ordemDeServicoExameRepository.delete(ordemDeServicoExame);
+        }
+
     }
 }

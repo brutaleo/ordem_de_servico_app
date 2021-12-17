@@ -62,8 +62,6 @@ public class OrdemDeServicoController {
         ordemDeServico.persist();
     }
 
-
-
     @PUT
     @Path("protocolo/{id}")
     @Transactional
