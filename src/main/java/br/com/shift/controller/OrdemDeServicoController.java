@@ -2,11 +2,9 @@ package br.com.shift.controller;
 
 import br.com.shift.dto.AdicionarOrdemDeServicoDTO;
 import br.com.shift.dto.AtualizarOrdemDeServicoDTO;
-import br.com.shift.dto.OrdemDeServicoDTO;
 import br.com.shift.dto.Mappers.OrdemDeServicoMapper;
-import br.com.shift.model.Exame;
+import br.com.shift.dto.OrdemDeServicoDTO;
 import br.com.shift.model.OrdemDeServico;
-import br.com.shift.model.OrdemDeServicoExame;
 import br.com.shift.repository.OrdemDeServicoExameRepository;
 
 import javax.inject.Inject;
@@ -34,8 +32,7 @@ public class OrdemDeServicoController {
 
     @Inject
     OrdemDeServicoMapper ordemDeServicoMapper;
-    @Inject
-    OrdemDeServicoExameRepository ordemDeServicoExameRepository;
+
 
     @GET
     public List<OrdemDeServicoDTO> buscarTodasAsOrdensDeServico() {
@@ -52,30 +49,6 @@ public class OrdemDeServicoController {
         return Response.status(Response.Status.CREATED).build();
     }
 
-    @POST
-    @Path("{ordem_id}/{exame_id}")
-    @Transactional
-    public Response adicionaExameNaOrdemDeServico(@PathParam("ordem_id") Long ordem_id, @PathParam("exame_id") Long exame_id) {
-
-        Optional<OrdemDeServico> ordemOptional = OrdemDeServico.findByIdOptional(ordem_id);
-        if (ordemOptional.isEmpty()) {
-            throw new NotFoundException();
-        }
-
-        Optional<Exame> exameOptional = Exame.findByIdOptional(exame_id);
-        if (exameOptional.isEmpty()) {
-            throw new NotFoundException();
-        }
-
-        OrdemDeServicoExame ordemDeServicoExame = new OrdemDeServicoExame();
-        ordemDeServicoExame.ordemDeServico = ordemOptional.get();
-        ordemDeServicoExame.exame = exameOptional.get();
-
-        ordemDeServicoExameRepository.persist(ordemDeServicoExame);
-
-        return Response.status(Response.Status.CREATED).build();
-    }
-
     @PUT
     @Path("{id}")
     @Transactional
@@ -86,6 +59,21 @@ public class OrdemDeServicoController {
             throw new NotFoundException();
         }
         OrdemDeServico ordemDeServico = ordemDeServicoOpitional.get();
+        ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
+        ordemDeServico.persist();
+    }
+
+    @PUT
+    @Path("protocolo/{id}")
+    @Transactional
+    public void gerarProtocoloDaOrdemDeServico(@PathParam("id") Long id, AtualizarOrdemDeServicoDTO dto) {
+        Optional<OrdemDeServico> ordemDeServicoOpitional =
+                OrdemDeServico.findByIdOptional(id);
+        if (ordemDeServicoOpitional.isEmpty()) {
+            throw new NotFoundException();
+        }
+        OrdemDeServico ordemDeServico = ordemDeServicoOpitional.get();
+        ordemDeServico.protocolo = dto.gerarNumeroDeprotocolo();
         ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
         ordemDeServico.persist();
     }
