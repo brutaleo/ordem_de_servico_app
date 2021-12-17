@@ -41,11 +41,11 @@ public class OrdemDeServicoExameController {
 
         List<Exame> exames = new ArrayList<>();
 
-        for (OrdemDeServicoExame ordemDeServicoExame : ordemDeServicoExames) {
-            exames.add(Exame.findById(ordemDeServicoExame.exame));
-        }
-        return exameMapper.toExameList(exames);
+        ordemDeServicoExames.forEach(ordemExame -> {
+            exames.add(Exame.findById(ordemExame.getExame()));
+        });
 
+        return exameMapper.toExameList(exames);
     }
 
     @POST

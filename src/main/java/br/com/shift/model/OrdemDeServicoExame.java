@@ -15,11 +15,8 @@ public class OrdemDeServicoExame extends PanacheEntity {
     @ManyToOne(optional = false)
     public Exame exame;
 
-    public OrdemDeServico getOrdemDeServico() {
-        return ordemDeServico;
-    }
 
-    public Exame getExame() {
-        return exame;
+    public Long getExame() {
+        return exame.id;
     }
 }

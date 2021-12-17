@@ -33,7 +33,6 @@ public class OrdemDeServicoController {
     @Inject
     OrdemDeServicoMapper ordemDeServicoMapper;
 
-
     @GET
     public List<OrdemDeServicoDTO> buscarTodasAsOrdensDeServico() {
         Stream<OrdemDeServico> ordemDeServicos = OrdemDeServico.streamAll();
@@ -62,20 +61,8 @@ public class OrdemDeServicoController {
         ordemDeServicoMapper.toOrdemDeServico(dto, ordemDeServico);
         ordemDeServico.persist();
     }
-    public String gerarNumeroDeprotocolo() {
 
-        Random ran = new Random();
-        int top = 9;
-        char data = ' ';
-        StringBuilder dat = new StringBuilder();
 
-        for (int i=0; i<=top; i++) {
-            data = (char)(ran.nextInt(25)+97);
-            dat.insert(0, data);
-        }
-
-        return dat.toString().toUpperCase();
-    }
 
     @PUT
     @Path("protocolo/{id}")
@@ -101,6 +88,21 @@ public class OrdemDeServicoController {
                 () -> {
                     throw new NotFoundException();
                 });
+    }
+
+    private String gerarNumeroDeprotocolo() {
+
+        Random ran = new Random();
+        int top = 9;
+        char data = ' ';
+        StringBuilder dat = new StringBuilder();
+
+        for (int i=0; i<=top; i++) {
+            data = (char)(ran.nextInt(25)+97);
+            dat.insert(0, data);
+        }
+
+        return dat.toString().toUpperCase();
     }
 }
 
